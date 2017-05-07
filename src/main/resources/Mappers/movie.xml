@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="reco.dao.MovieDao">
+
+    <resultMap id="movie" type="reco.entity.Movie">
+        <result property="id" column="id"/>
+        <result property="averageRating" column="average_rating"/>
+        <result property="genres" column="genres"/>
+        <result property="title" column="title"/>
+        <result property="small" column="small"/>
+        <result property="medium" column="medium"/>
+        <result property="large" column="large"/>
+        <result property="year" column="year"/>
+    </resultMap>
+
+    <select id="getMovies" parameterType="Map" resultMap="movie">
+        SELECT * FROM reco_movies ORDER BY average_rating DESC LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="selectMovieCount" resultType="Integer">
+        SELECT COUNT(*) FROM reco_movies
+    </select>
+
+    <select id="getMovieById" parameterType="double" resultMap="movie">
+        SELECT * FROM reco_movies WHERE id = #{movieId}
+    </select>
+</mapper>

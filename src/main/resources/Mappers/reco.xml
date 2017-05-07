@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="reco.dao.RecoDao">
+
+    <resultMap id="rating" type="reco.entity.Rating">
+        <result property="userId" column="user_id"/>
+        <result property="movieId" column="movie_id"/>
+        <result property="movieRating" column="movie_rating"/>
+    </resultMap>
+
+    <select id="findRating" resultMap="rating">
+        SELECT user_id,movie_id,movie_rating FROM reco_usercf
+    </select>
+
+
+</mapper>
